@@ -1,0 +1,8 @@
+{
+ "extName": {
+  "message": "Zovo Speed - Video Speed Controller"
+ },
+ "extDesc": {
+  "message": "Speed up or slow down HTML5 video and audio with shortcuts. Per-site speed memory, pitch correction, skip-silence and A-B loop."
+ }
+}

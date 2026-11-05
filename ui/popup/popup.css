@@ -1,0 +1,423 @@
+/**
+ * Zovo Speed popup — per-ext design identity (ns xzova6d9, hue 217).
+ * Taste rules: one hero, one accent, gold only on the upgrade path,
+ * 8px grid, ≤3 type sizes, calm whitespace, dark mode included.
+ */
+
+:root {
+  --zs-primary: #6290da;
+  --zs-primary-dark: #3973d0;
+  --zs-primary-50: #eef3fb;
+  --zs-pro: #f59e0b;
+  --zs-pro-dark: #b45309;
+  --zs-text: #1a1a2e;
+  --zs-text-secondary: #6b7280;
+  --zs-surface: #f9fafb;
+  --zs-bg: #ffffff;
+  --zs-border: #e3e5e8;
+  --zs-shadow: 0 8px 24px -12px rgba(26, 26, 46, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --zs-text: #e5e7eb;
+    --zs-text-secondary: #9ca3af;
+    --zs-surface: #0f0f1a;
+    --zs-bg: #1a1a2e;
+    --zs-border: #2e2e45;
+    --zs-primary-50: #232a3d;
+    --zs-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 300px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--zs-text);
+  background: var(--zs-surface);
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+/* --- top bar --- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  flex: 1;
+}
+
+/* power switch (role=switch) */
+.power-switch {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.switch-track {
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  border-radius: 9999px;
+  background: var(--zs-primary);
+  position: relative;
+  transition: background 0.15s ease;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.15s ease;
+}
+
+.power-switch.disabled .switch-track {
+  background: var(--zs-border);
+}
+
+.power-switch.disabled .switch-thumb {
+  left: 2px;
+}
+
+/* --- hero --- */
+.hero-card {
+  background: var(--zs-bg);
+  border: 1px solid var(--zs-border);
+  border-radius: 12px;
+  box-shadow: var(--zs-shadow);
+  padding: 20px 16px 16px;
+  text-align: center;
+}
+
+.hero-speed {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-caption {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--zs-text-secondary);
+  margin-top: 4px;
+}
+
+.speed-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.control-btn {
+  min-height: 40px;
+  min-width: 64px;
+  border: 1px solid var(--zs-border);
+  border-radius: 8px;
+  background: var(--zs-bg);
+  color: var(--zs-text);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.control-btn:hover {
+  background: var(--zs-primary-50);
+}
+
+.reset-btn {
+  color: var(--zs-primary-dark);
+  font-weight: 600;
+}
+
+/* --- presets --- */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--zs-text-secondary);
+  margin-bottom: 8px;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.preset-btn {
+  min-height: 40px;
+  border: 1px solid var(--zs-border);
+  border-radius: 8px;
+  background: var(--zs-bg);
+  color: var(--zs-text);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.preset-btn:hover {
+  background: var(--zs-primary-50);
+  border-color: var(--zs-primary);
+}
+
+/* --- feature toggles --- */
+.extras-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.extra-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 8px;
+  padding: 0 4px;
+}
+
+.extra-row:hover {
+  background: var(--zs-primary-50);
+}
+
+.extra-row input {
+  margin: 0;
+  accent-color: var(--zs-primary);
+  width: 16px;
+  height: 16px;
+}
+
+.pro-tag {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background: #fef3c7;
+  color: var(--zs-pro-dark);
+  margin-left: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pro-tag {
+    background: rgba(245, 158, 11, 0.18);
+    color: #fbbf24;
+  }
+}
+
+.site-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--zs-text-secondary);
+  padding: 4px 4px 0;
+}
+
+.site-line.hide {
+  display: none;
+}
+
+.site-forget {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--zs-text-secondary);
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
+.site-forget:hover {
+  background: var(--zs-primary-50);
+  color: var(--zs-text);
+}
+
+/* --- upgrade CTA: the one gold element --- */
+.upgrade-cta {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--zs-pro);
+  background: transparent;
+  color: var(--zs-pro-dark);
+  text-decoration: none;
+}
+
+.upgrade-cta:hover {
+  background: #fef3c7;
+}
+
+@media (prefers-color-scheme: dark) {
+  .upgrade-cta {
+    color: #fbbf24;
+  }
+  .upgrade-cta:hover {
+    background: rgba(245, 158, 11, 0.12);
+  }
+}
+
+.upgrade-cta.hide {
+  display: none;
+}
+
+/* --- footer --- */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.status {
+  font-size: 12px;
+  color: var(--zs-text-secondary);
+}
+
+.status.hide {
+  visibility: hidden;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  color: var(--zs-text-secondary);
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: auto;
+}
+
+.icon-btn:hover {
+  background: var(--zs-primary-50);
+  color: var(--zs-text);
+}
+
+/* focus visibility (a11y gate) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--zs-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* --- design loop r3 fixes --- */
+
+/* active preset chip: the accent lands where the state is */
+.preset-btn.is-active {
+  background: var(--zs-primary-50);
+  border-color: var(--zs-primary);
+  color: var(--zs-primary-dark);
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .preset-btn.is-active {
+    background: rgba(98, 144, 218, 0.16);
+    color: var(--zs-primary-light, #8bade4);
+  }
+}
+
+/* ghost steppers: the reset chip stays the only bordered control */
+.control-btn:not(.reset-btn) {
+  border: none;
+  background: transparent;
+  color: var(--zs-text-secondary);
+}
+
+.control-btn:not(.reset-btn):hover {
+  background: var(--zs-primary-50);
+  color: var(--zs-text);
+}
+
+/* gear lives in the header now — 40px target, no lonely footer icon */
+.topbar .icon-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 0;
+}
+
+.footer {
+  min-height: 0;
+}
+
+.footer .status {
+  padding: 0 4px;
+}
+
+/* r4: dark-mode unchecked checkboxes read as solid white squares */
+@media (prefers-color-scheme: dark) {
+  input[type='checkbox']:not(:checked) {
+    appearance: none;
+    background: #1a1a2e;
+    border: 1px solid #2e2e45;
+    border-radius: 4px;
+  }
+}
+
+/* r4: reset chip label contrast in dark */
+@media (prefers-color-scheme: dark) {
+  .reset-btn {
+    color: #8bade4;
+  }
+}
